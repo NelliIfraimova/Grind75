@@ -35,16 +35,22 @@
  */
 //if list 1 is empty return list 2, if list 2 is emoty return list 1
  var mergeTwoLists = function (list1, list2) {
-    if (!list1 || !list2){
-       return list2 || list1
+    let dummy= []
+head= dummy
+    while(list1 != null && list2 != null){
+        if(list1.val <= list2.val){
+            dummy.next= list1
+            list1= list1.next
+        } else {
+            dummy.next= list2
+            list2= list2.next
+        }
+        dummy= dummy.next
+    } 
+    if(list1 != null){
+        dummy.next= list1
+    } else{
+        dummy.next= list2
     }
-    //if the value in list 2 i greater or equal, the next value in list 1 will be the next value of list 1
-   else if (list1.val <= list2.val) {
-       list1.next = mergeTwoLists(list1.next, list2);
-       return list1;
-       //if the value in list 2 is less than, the next value in list 1 will be the next value of list 2
-   } else {
-       list2.next = mergeTwoLists(list1, list2.next);
-       return list2
-   }
+    return head.next
 };
