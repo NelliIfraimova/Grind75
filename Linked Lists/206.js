@@ -58,3 +58,11 @@
         head.next= null
         return newHead
     }
+
+    //simplest recursive solution
+    var reverseList = function(head, prev = null) {
+        if (!head) return prev;
+        let next = head.next;
+        head.next = prev;
+        return reverseList(next, head);
+    };
